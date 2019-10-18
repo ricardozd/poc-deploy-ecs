@@ -1,0 +1,14 @@
+# Binaries
+bin/
+
+# IDE files
+.idea
+
+# Terraform
+.terraform
+*backup
+*.tfstate
+
+
+# Zip files
+*.zip
