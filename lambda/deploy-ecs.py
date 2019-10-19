@@ -6,13 +6,13 @@ cluster_name = 'ecs-cluster'
 client = boto3.client('ecs', region_name="eu-west-1")
 
 
-def get_event_name(event):
+def get_deploy_service_name(event):
     message = event['Records'][0]['Sns']['Message']
     parsed_message = json.loads(message)
-    return prepare_service_for_deploy(parsed_message['AlarmName'])
+    return parser_message(parsed_message['AlarmName'])
 
 
-def prepare_service_for_deploy(message):
+def parser_message(message):
     return message.split("-")[0] + "-service"
 
 
@@ -69,9 +69,9 @@ def update_service(service_name, task_name):
 
 
 def handler(event, lambda_context):
-    event_name = get_event_name(event)
+    service_name = get_deploy_service_name(event)
     services = get_list_services()
 
     for service in services:
         service_info = get_service(service)
-        deploy(service_info, event_name)
+        deploy(service_info, service_name)

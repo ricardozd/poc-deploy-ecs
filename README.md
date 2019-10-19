@@ -53,6 +53,8 @@ https://medium.com/@YadavPrakshi/automate-zero-downtime-deployment-with-amazon-e
 
 # Deploy lambda
 
+The lambda code forces the deploy in the service. Deployments are not forced by default. I update a service's tasks to use a newer Docker image with the same image/tag combination (my_image:latest ).
+
 ```
     make deploy-lambda
 
@@ -64,4 +66,3 @@ https://medium.com/@YadavPrakshi/automate-zero-downtime-deployment-with-amazon-e
 # Todo
 
  - CloudTrail is slow ( 15m between executions ), I need another type of event to execute the lambda.
- - The lambda code forces the deploy in the service, I think it is better the deploy in the run tasks, changing the version.
