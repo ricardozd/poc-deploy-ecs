@@ -6,8 +6,8 @@ https://medium.com/@YadavPrakshi/automate-zero-downtime-deployment-with-amazon-e
 
 - The folder CMD contains two basic services writes in golang.
 - The folder infrastructure contains the code of the infrastructure based on AWS.
-    In the folder infrastructure/modules/base have the services
-    In the folder infrastructure/modules/core have the basic infrastructure like an ECS cluster.
+    - In the folder infrastructure/modules/base have the services
+    - In the folder infrastructure/modules/core have the basic infrastructure like an ECS cluster.
 - The folder lambda contains the script for deploy ECS Fargate
 - The DockerFile is the builder for services
 - The Makefile has basic executions.
@@ -20,7 +20,7 @@ https://medium.com/@YadavPrakshi/automate-zero-downtime-deployment-with-amazon-e
 
 # Map
 
-
+![Alt text](doc/infra-map.png?raw=true "Map infrastructure")
 
 # How to use?
 
@@ -47,7 +47,7 @@ https://medium.com/@YadavPrakshi/automate-zero-downtime-deployment-with-amazon-e
 
     terraform init
 
-    terraform apply
+    terraform apply --var subnets="subnet-ae3970c8,subnet-8ed28bc6,subnet-8771fadd" --var vpc_id="vpc-a6d1cdc0"
         
 ```
 
@@ -58,7 +58,7 @@ https://medium.com/@YadavPrakshi/automate-zero-downtime-deployment-with-amazon-e
 
     cd infrastructure/
 
-    terraform apply
+    terraform apply --var subnets="subnet-ae3970c8,subnet-8ed28bc6,subnet-8771fadd" --var vpc_id="vpc-a6d1cdc0"
 ```
 
 # Todo

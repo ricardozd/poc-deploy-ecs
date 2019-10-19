@@ -1,3 +1,3 @@
 resource "aws_ecs_cluster" "ecs_cluster" {
-  name = "ecs-cluster"
+  name = var.cluster_name
 }

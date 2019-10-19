@@ -1,5 +1,6 @@
-import boto3
 import json
+
+import boto3
 
 cluster_name = 'ecs-cluster'
 client = boto3.client('ecs', region_name="eu-west-1")
@@ -8,9 +9,11 @@ client = boto3.client('ecs', region_name="eu-west-1")
 def get_event_name(event):
     message = event['Records'][0]['Sns']['Message']
     parsed_message = json.loads(message)
-    print(parsed_message)
-    print(['Records'][0]['AlarmName'])
-    return parsed_message['Records'][0]['AlarmName']
+    return prepare_service_for_deploy(parsed_message['AlarmName'])
+
+
+def prepare_service_for_deploy(message):
+    return message.split("-")[0] + "-service"
 
 
 def get_list_services():
@@ -22,10 +25,6 @@ def get_list_services():
     )
 
     return response['serviceArns']
-
-
-def get_service_for_deploy(message):
-    return message.split("-")[0] + "-service"
 
 
 def get_service(service):
@@ -44,12 +43,12 @@ def get_name(result):
 
 
 def deploy(service_info, service_to_deploy):
-    if is_service_to_deploy(service_info['serviceName'], service_to_deploy):
-        update_service(service_info['serviceName'], service_info['taskDefinition'])
+    if is_service_to_deploy(service_info['services'][0]['serviceName'], service_to_deploy):
+        update_service(service_info['services'][0]['serviceName'], service_info['services'][0]['taskDefinition'])
 
 
 def is_service_to_deploy(service, deploy_service):
-    if service['serviceName'] == deploy_service:
+    if service == deploy_service:
         return True
     return False
 
@@ -73,9 +72,6 @@ def handler(event, lambda_context):
     event_name = get_event_name(event)
     services = get_list_services()
 
-    deploy_service = get_service_for_deploy(event_name)
-
     for service in services:
         service_info = get_service(service)
-        for info in service_info['services']:
-            deploy(info, deploy_service)
+        deploy(service_info, event_name)

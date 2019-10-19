@@ -9,6 +9,5 @@ bin/
 *backup
 *.tfstate
 
-
 # Zip files
 *.zip

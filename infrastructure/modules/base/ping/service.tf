@@ -5,7 +5,7 @@ resource "aws_ecs_service" "service" {
 
   network_configuration {
     security_groups = [
-      aws_security_group.sg.id]
+    aws_security_group.sg.id]
     subnets          = compact(split(",", var.subnets))
     assign_public_ip = true
   }
@@ -23,7 +23,7 @@ resource "aws_ecs_task_definition" "task_definition" {
   cpu    = 512
   memory = 1024
   requires_compatibilities = [
-    "FARGATE"]
+  "FARGATE"]
   network_mode          = "awsvpc"
   task_role_arn         = aws_iam_role.role.arn
   execution_role_arn    = aws_iam_role.role.arn

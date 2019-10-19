@@ -7,7 +7,7 @@ import (
 
 func main() {
 	http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
-		_, _ = fmt.Fprintf(w, "Welcome to service of !")
+		_, _ = fmt.Fprintf(w, "Welcome to!")
 	})
 
 	fmt.Println("Starting....")

@@ -1,7 +1,7 @@
 data "aws_caller_identity" "current" {}
 
 resource "aws_cloudwatch_log_group" "log" {
-  name = "trail-events"
+  name              = "trail-events"
   retention_in_days = 30
 }
 
@@ -11,7 +11,7 @@ resource "aws_cloudtrail" "trail" {
   include_global_service_events = true
   enable_logging                = true
   is_multi_region_trail         = false
-  enable_log_file_validation    = true
+  enable_log_file_validation    = false
   cloud_watch_logs_group_arn    = aws_cloudwatch_log_group.log.arn
   cloud_watch_logs_role_arn     = aws_iam_role.trail_role.arn
 }

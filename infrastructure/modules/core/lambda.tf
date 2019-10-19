@@ -24,11 +24,11 @@ resource "aws_lambda_function" "lambda" {
 }
 
 resource "aws_lambda_permission" "with_sns" {
-  statement_id = "AllowExecutionFromSNS"
-  action = "lambda:InvokeFunction"
+  statement_id  = "AllowExecutionFromSNS"
+  action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.lambda.arn
-  principal = "sns.amazonaws.com"
-  source_arn = aws_sns_topic.sns.arn
+  principal     = "sns.amazonaws.com"
+  source_arn    = aws_sns_topic.sns.arn
 }
 
 
@@ -51,10 +51,10 @@ resource "aws_iam_role" "lambda_role" {
 EOF
 }
 
-//Todo fix the actions of iam and ecs
+//Todo fix the break security in *
 resource "aws_iam_role_policy" "lambda_policy" {
-  name        = "lambda-policy"
-  role        = aws_iam_role.lambda_role.id
+  name = "lambda-policy"
+  role = aws_iam_role.lambda_role.id
 
   policy = <<EOF
 {

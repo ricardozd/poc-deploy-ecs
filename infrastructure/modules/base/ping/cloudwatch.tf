@@ -1,6 +1,6 @@
 resource "aws_cloudwatch_log_metric_filter" "filter" {
   name           = "${var.name}-filter"
-  pattern        = "{ ($.eventSource = ecr.amazonaws.com) && ($.eventName = PutImage) && ($.requestParameters.repositoryName = \"${var.name}-repository\") && ($.errorCode NOT EXISTS) }"
+  pattern        = "{($.eventSource = ecr.amazonaws.com) && ($.eventName = PutImage) && ($.requestParameters.repositoryName = \"${var.name}-repository\")}"
   log_group_name = var.log
 
   metric_transformation {
