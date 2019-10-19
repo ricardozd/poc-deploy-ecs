@@ -60,7 +60,7 @@ The lambda code forces the deploy in the service. Deployments are not forced by 
 
     cd infrastructure/
 
-    terraform apply --var subnets="subnet-ae3970c8,subnet-8ed28bc6,subnet-8771fadd" --var vpc_id="vpc-a6d1cdc0"
+    terraform apply --var subnets="subnet-id,subnet-id,subnet-id" --var vpc_id="vpc-id"
 ```
 
 # Todo
