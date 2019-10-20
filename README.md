@@ -1,4 +1,4 @@
-# Deploy images in ECS:
+# Deploy images in ECS ( Fargate ):
 
 # References
 
@@ -76,3 +76,4 @@ The lambda code forces the deploy in the service. Deployments are not forced by 
 # Todo
 
  - CloudTrail is slow ( 15m between executions ), I need another type of event to execute the lambda.
+ - Improve the lambda deploy for new iterations in ECS, not only Fargate.
