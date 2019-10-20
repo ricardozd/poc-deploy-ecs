@@ -1,6 +1,6 @@
 # Deploy images in ECS:
 
-# Ref
+# References
 
 https://medium.com/@YadavPrakshi/automate-zero-downtime-deployment-with-amazon-ecs-and-lambda-c4e49953273d
 
