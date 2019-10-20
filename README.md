@@ -1,4 +1,4 @@
-# POC/ deploying images in ECS based in: 
+# Deploy images in ECS based in: 
 
 https://medium.com/@YadavPrakshi/automate-zero-downtime-deployment-with-amazon-ecs-and-lambda-c4e49953273d
 
