@@ -2,6 +2,10 @@
 
 https://medium.com/@YadavPrakshi/automate-zero-downtime-deployment-with-amazon-ecs-and-lambda-c4e49953273d
 
+# Map
+
+![Alt text](doc/infra-map.png?raw=true "Map infrastructure")
+
 # Base of the project:
 
 - The folder CMD contains two basic services writes in golang.
@@ -17,12 +21,18 @@ https://medium.com/@YadavPrakshi/automate-zero-downtime-deployment-with-amazon-e
 - Terraform ( recommended version v0.12.8 )
 - Docker
 - AWS Account ( recommended zone eu-west-1 )
-
-# Map
-
-![Alt text](doc/infra-map.png?raw=true "Map infrastructure")
+- Create ( manual ) bucket s3 with name: tech-artifacters-lambda
 
 # How to use?
+
+# Upload code lambda
+
+The lambda code forces the deploy in the service. Deployments are not forced by default. I update a service's tasks to use a newer Docker image with the same image/tag combination (my_image:latest ).
+
+```
+    make deploy-lambda
+
+```
 
 # Upload the images to AWS ECR
 
@@ -51,9 +61,7 @@ https://medium.com/@YadavPrakshi/automate-zero-downtime-deployment-with-amazon-e
         
 ```
 
-# Deploy lambda
-
-The lambda code forces the deploy in the service. Deployments are not forced by default. I update a service's tasks to use a newer Docker image with the same image/tag combination (my_image:latest ).
+# Deploy versions in lambda
 
 ```
     make deploy-lambda

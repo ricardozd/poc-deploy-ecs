@@ -1,19 +1,12 @@
-data "aws_s3_bucket_object" "bucket" {
-  bucket = aws_s3_bucket.bucket_artifacters.bucket
+data "aws_s3_bucket_object" "object" {
+  bucket = "tech-artifacters-lambda"
   key    = "deploy-ecs.zip"
 }
 
-resource "aws_s3_bucket" "bucket_artifacters" {
-  bucket = "tech-artifacters-lambda"
-  versioning {
-    enabled = true
-  }
-}
-
 resource "aws_lambda_function" "lambda" {
-  s3_bucket         = data.aws_s3_bucket_object.bucket.bucket
-  s3_key            = data.aws_s3_bucket_object.bucket.key
-  s3_object_version = data.aws_s3_bucket_object.bucket.version_id
+  s3_bucket         = data.aws_s3_bucket_object.object.bucket
+  s3_key            = data.aws_s3_bucket_object.object.key
+  s3_object_version = data.aws_s3_bucket_object.object.version_id
   function_name     = "deploy-ecs"
   role              = aws_iam_role.lambda_role.arn
   handler           = "deploy-ecs.handler"
@@ -34,6 +27,7 @@ resource "aws_lambda_permission" "with_sns" {
 
 resource "aws_iam_role" "lambda_role" {
   name = "lambda-role"
+  force_detach_policies = true
 
   assume_role_policy = <<EOF
 {

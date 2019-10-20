@@ -7,7 +7,7 @@ import (
 
 func main() {
 	http.HandleFunc("/ping", func(responseWriter http.ResponseWriter, r *http.Request) {
-		_, _ = fmt.Fprintf(responseWriter, "Welcome to ping service but not is a ping pong")
+		_, _ = fmt.Fprintf(responseWriter, "Welcome to ping service but not is a ping pong xD")
 	})
 
 	fmt.Println("Starting....")

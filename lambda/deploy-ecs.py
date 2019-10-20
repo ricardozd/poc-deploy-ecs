@@ -7,12 +7,12 @@ client = boto3.client('ecs', region_name="eu-west-1")
 
 
 def get_deploy_service_name(event):
-    message = event['Records'][0]['Sns']['Message']
-    parsed_message = json.loads(message)
-    return parser_message(parsed_message['AlarmName'])
+    result = event['Records'][0]['Sns']['Message']
+    parsed_result = json.loads(result)
+    return parser_service(parsed_result['AlarmName'])
 
 
-def parser_message(message):
+def parser_service(message):
     return message.split("-")[0] + "-service"
 
 

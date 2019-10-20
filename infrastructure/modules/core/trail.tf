@@ -54,6 +54,7 @@ POLICY
 
 resource "aws_iam_role" "trail_role" {
   name = "trail-role"
+  force_detach_policies = true
 
   assume_role_policy = <<EOF
 {
